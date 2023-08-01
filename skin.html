@@ -229,6 +229,13 @@
 					</div>
 				</div>
 
+				<div id="sticky_top">
+					<div id="scroll_progress">
+						<div id="scroll_progress_bar"></div>
+					</div>
+					<div id="top_header" class="header">[##_title_##]</div>
+				</div>
+
 				<div id="mArticle" class="article_skin">
 
 					<s_list>
@@ -242,6 +249,7 @@
 					</div>
 
 					<s_article_rep>
+
 						<s_index_article_rep>
 							<div class="list_content">
 								<s_article_rep_thumbnail>
@@ -259,19 +267,21 @@
 							</div>
 						</s_index_article_rep>
 
-
 						<s_permalink_article_rep>
 							<h2 id="dkBody" class="screen_out">[##_article_rep_title_##] 본문</h2>
 							<div class="area_title">
 								<strong class="tit_category"><a href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a></strong>
 								<h3 class="tit_post">[##_article_rep_title_##]</h3>
-								<span class="info_post">[##_article_rep_author_##]
-                                <span class="txt_bar"></span>[##_article_rep_date_##]
-								<s_ad_div>
-									<span class="txt_bar"></span><a href="[##_s_ad_m_link_##]" class="link_detail">수정</a>
-									<span class="txt_bar"></span><a href="#" onclick="[##_s_ad_s2_onclick_##]" class="link_detail">[##_s_ad_s1_label_##]</a>
-									<span class="txt_bar"></span><a href="#" onclick="[##_s_ad_d_onclick_##]" class="link_detail">삭제</a>
-								</s_ad_div>
+								<div id="title_sticky_divider"></div>
+								[##_article_rep_date_##]
+								<span class="txt_bar"></span>
+								<span class="info_post">
+									[##_article_rep_author_##]
+									<s_ad_div>
+										<span class="txt_bar"></span><a href="[##_s_ad_m_link_##]" class="link_detail">수정</a>
+										<span class="txt_bar"></span><a href="#" onclick="[##_s_ad_s2_onclick_##]" class="link_detail">[##_s_ad_s1_label_##]</a>
+										<span class="txt_bar"></span><a href="#" onclick="[##_s_ad_d_onclick_##]" class="link_detail">삭제</a>
+									</s_ad_div>
 							</span>
 							</div>
 
@@ -698,7 +708,7 @@
 					li.addEventListener('click', function(evt){
 						evt.preventDefault();
 						window.scrollTo({
-							top: e.offsetTop - 40,
+							top: e.offsetTop - 60,
 							left: 0,
 							behavior: 'smooth'
 						});
@@ -727,10 +737,26 @@
 				}
 			});
 		})();
+		(function createStickyTitle(){
+			const bar = document.getElementById("scroll_progress_bar");
+			const top = document.getElementById("sticky_top");
+			const divider = document.getElementById("title_sticky_divider");
+			const topTitle = document.getElementById("top_header");
+			const update = () => {
+				const height = document.body.scrollHeight - document.body.offsetHeight;
+				bar.style.width = `${window.scrollY / height * 100}%`;
+				if (window.scrollY >= divider.offsetTop + divider.offsetHeight) {
+					top.className = 'active';
+				} else {
+					top.className = 'hide';
+				}
+			};
+			window.addEventListener('scroll', update);
+			update();
+			// inject title
+			topTitle.textContent = document.querySelector("#mArticle .tit_post").textContent;
+		})();
 	</script>
-	<!-- Disable Google Ad
-	<script data-ad-client="ca-pub-8645851802756233" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	-->
 </body>
 
 </html>
