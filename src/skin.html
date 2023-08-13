@@ -693,6 +693,7 @@
 	
 	<script type="text/javascript">
 		(function initTOC() {
+			const originTitle = document.title;
 			const padPx = 30;
 			const toc = document.getElementById('toc');
 			if (toc == null) return;
@@ -702,23 +703,33 @@
 				.filter(function(e){ return !e.closest('.another_category'); })
 				.map(function(e){
 					const li = document.createElement('li');
+					const headerText = e.textContent;
+					const slug = slugify(headerText);
 					const indent = Number(e.tagName[1]);
 					li.className = 'toc_item level' + indent;
-					li.innerHTML = "<div class=\"bar\"></div><a href=\"#\" class=\"item_text\">" + e.innerText + "</a>";
-					li.addEventListener('click', function(evt){
-						evt.preventDefault();
+					li.innerHTML = "<div class=\"bar\"></div><span class=\"item_text\">" + e.innerText + "</span>";
+					const scrollToHeader = () => {
+  					history.replaceState({}, '', '#' + slug);
+						document.title = originTitle + ' > '+ headerText;
 						window.scrollTo({
 							top: e.offsetTop - 60,
 							left: 0,
 							behavior: 'smooth'
 						});
-					})
+					};
+					[li, e].forEach(el => {
+						el.addEventListener('click', function (evt) {
+							evt.preventDefault();
+							scrollToHeader();
+						});
+					});
 					return { target: e, element: li };
 				});
 			toc.innerHTML = '';
 			for (let i = 0; i < list.length; ++i) {
 				toc.appendChild(list[i].element);
 			}
+
 			document.addEventListener('scroll', function(evt){
 				const curWinOffset = window.pageYOffset;
 				let cleanAfter = false;
@@ -736,6 +747,35 @@
 					}
 				}
 			});
+
+			// add header picker
+			list.forEach(({ target }) => addHeaderPicker(target));
+			
+			function slugify(str) {
+				return String(str)
+					.normalize('NFC') // Normalization Form Canonical Composition
+					.replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
+					.trim() // trim leading or trailing whitespace
+					.toLowerCase() // convert to lowercase
+					.replace(/[^a-z0-9 \-ㄱ-힣]/g, '') // remove non-alphanumeric and non-korean characters
+					.replace(/\s+/g, '-') // replace spaces with hyphens
+					.replace(/-+/g, '-'); // remove consecutive hyphens
+			}
+			
+			function createHeaderPicker(id) {
+				const pickerBox = document.createElement('div');
+				pickerBox.className = 'header-picker-wrapper';
+				const headerPicker = document.createElement('div');
+				headerPicker.className = 'header-picker';
+				headerPicker.id = id;
+				pickerBox.appendChild(headerPicker);
+				return pickerBox;
+			}
+
+			function addHeaderPicker(element) {
+				const slug = slugify(element.textContent);
+				element.parentElement.insertBefore(createHeaderPicker(slug), element);
+			}
 		})();
 		(function createStickyTitle(){
 			const bar = document.getElementById("scroll_progress_bar");
