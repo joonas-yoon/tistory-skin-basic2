@@ -239,7 +239,7 @@ figure[data-ke-type="video"] figcaption {
 .area_foot .emph_t{color:#6bacce}
 
 /* 뷰 상단 */
-.area_title{margin:0 0 30px;padding-bottom:15px;border-bottom:1px solid #efefef}
+.area_title{margin:0 0 30px;padding-bottom:15px;border-bottom:1px solid #efefef;color: #a0a0a0;font-weight: 300;}
 .area_title .tit_category a {font-weight:700;font-size:16px;color:#6bacce}
 .area_title .tit_post{padding:5px 0 10px;font-weight:normal;font-size:34px;line-height:43px;color:#222}
 .area_title .info_post,
@@ -385,14 +385,15 @@ figure[data-ke-type="video"] figcaption {
 .list_related {overflow:hidden;margin-top:15px}
 .list_related li {position:relative;float:left;margin-right:20px}
 .list_related li:last-child { margin-right:0}
-.list_related .link_related {display:block;overflow:hidden;position:relative;width:185px;height:200px;margin:0 auto;border:1px solid #e8e8e8;background:#fafafa;font-size:13px;-webkit-box-sizing:border-box;box-sizing:border-box;text-align:center;color:#fff}
+.list_related .link_related {display:block;overflow:hidden;position:relative;width:185px;height:200px;margin:0 auto;border:1px solid #e8e8e8;background:#fafafa;font-size:13px;-webkit-box-sizing:border-box;box-sizing:border-box;text-align:center;color:#fff;transition: opacity 200ms ease-out;}
+.list_related .link_related:hover {opacity: 0.75; text-decoration: none;}
 .list_related .thumb_type .link_related {width:185px;height:200px;border:0 none}
 .list_related .frame_related {display:none;position:absolute;left:0;top:0;width:100%;height:100%;background:#000;opacity:.4;filter:alpha(Opacity=40)}
 .thumb_type .frame_related {display:block}
 .list_related .thumb_related {position:absolute;left:0;top:0;width:100%;height:100%}
 .link_related .thumb_related img.img_related {filter: blur(2px);}
 .list_related .txt_related {display:block;display:-webkit-box;overflow:hidden;position:relative;left:0;top:0;z-index:10;max-height:80px;padding:27px 20px 0;color:#5c5c5c;text-overflow:ellipsis;-webkit-line-clamp:4;-webkit-box-orient:vertical;word-wrap:break-word}
-.list_related .link_related:hover .txt_related {text-decoration:underline}
+.list_related .link_related:hover .txt_related {text-decoration:none;}
 .list_related .date_related {position:absolute;left:0;bottom:20px;z-index:10;width:100%;color:#a7a7a7}
 .list_related .thumb_type .txt_related {color:#fff}
 .list_related .thumb_type .date_related {color:#fff; opacity:0.7}
@@ -445,7 +446,8 @@ figure[data-ke-type="video"] figcaption {
 .area_more{display:none}
 
 /* 리스트 */
-.list_content {padding:24px 0 26px;border-bottom:1px solid #efefef }
+.list_content {padding:24px 0 26px;border-bottom:1px solid #efefef; transition: transform 200ms ease-in-out; }
+.list_content:hover {transform: scale(1.015);}
 .list_content::after { content:''; clear:both; display:block }
 .list_content .thumbnail_post { float:right; width:150px; height:150px; margin:6px 0 5px 30px }
 .list_content .link_post{display:block;overflow:hidden;text-decoration:none}
