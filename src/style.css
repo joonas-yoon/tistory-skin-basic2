@@ -998,6 +998,9 @@ html[data-theme=dark] .tt-share-entry-with-sns .tt-sns-service-default:hover {
 .area_reply .tf_reply {
 	border: none;
 }
+html[data-theme=dark] .area_reply .tit_reply {
+	color: #fafafa;
+}
 html[data-theme=dark] .area_reply .reply_write,
 html[data-theme=dark] .area_reply .inp_info,
 html[data-theme=dark] .area_reply .tf_reply,
