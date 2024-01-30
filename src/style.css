@@ -538,10 +538,8 @@ only screen and (max-width:738px){
 	.area_search .btn_search {width:50px;height:45px;margin-top:0}
 	.area_search .btn_search .ico_search {width:18px;height:18px;margin-top:0;background-position:-20px 0}
 
-	#tt-body-page .area_head { background-color:rgba(255,255,255,0.95) }
-	html[data-theme=dark] #tt-body-page .area_head { background-color:rgba(50,50,50,0.95) }
-	#tt-body-page .navi_on .area_head { background-color: inherit }
-	html[data-theme=dark] .area_head { background-color:rgba(50,50,50,0.95); }
+	#tt-body-page .area_head { background-color:transparent; backdrop-filter: blur(15px); }
+	#tt-body-page .navi_on .area_head { background-color: inherit; backdrop-filter: none; }
 
 	.navi_on .area_head {height:72px;position:fixed; right:58px; width:auto}
 	.navi_on .area_head .area_profile {display:block;position:absolute;left:0;right:0;top:0;height:72px;text-align:left}
@@ -937,7 +935,7 @@ html[data-theme=dark] .menu_toolbar .txt_state {
   color: #ddd;
 }
 html[data-theme=dark] .area_search .btn_search .ico_search {
-  filter: invert(0.25);
+  filter: invert(1.0);
 }
 html[data-theme=dark] .area_paging .link_page .selected {
   background-color: #3c6a83;
@@ -1211,4 +1209,32 @@ html[data-theme="dark"] #sticky_top > .header {
 	.header-picker {
     top: -20px;
 	}
+}
+
+.area_head .title_wrap.mobile {
+		height: 45px;
+		display: flex;
+		justify-items: center;
+		align-items: center;
+		margin: 0 auto;
+		position: absolute;
+		top: 0;
+		left: 50px;
+		width: calc(100% - 150px);
+}
+
+.navi_on .area_head .title_wrap.mobile,
+.search_on .area_head .title_wrap.mobile {
+		display: none;
+}
+
+.title_wrap.mobile > .title {
+	font-size: 100%;
+		line-height: 1.25;
+		display: block;
+		width: 100%;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		min-width: 0;
 }
