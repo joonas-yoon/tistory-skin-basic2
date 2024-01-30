@@ -31,3 +31,7 @@ https://blog.joonas.io/220
 **상단 스크롤 + 타이틀 표시**
 
 ![](docs/tistory-skin-progress.gif)
+
+**예상 읽기 시간 표시**
+
+![](docs/reading-time.png)
