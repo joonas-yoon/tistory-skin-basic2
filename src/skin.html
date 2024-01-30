@@ -798,6 +798,43 @@
 			update();
 			// inject title
 			topTitle.textContent = document.querySelector("#mArticle .tit_post").textContent;
+		})();
+	</script>
+
+	<script type="text/javascript">
+	(function(){
+		/** returns reading time in seconds */
+		function estimateReadingTime(element) {
+			const AVG_WORD_LEN = 4.7;
+			const sum = (a) => a.reduce((acc, cur) => acc + cur, 0);
+			const calcWordPerMin = (text) => {
+					const kor = text.replaceAll(/[^ㄱ-ㅎㅏ-ㅣ가-힣]/gi, '').length;
+					const eng = text.replaceAll(/[^a-zA-Z]/gi, '').length;
+					return (120 * kor + 238 * eng) / (kor + eng)
+			};
+			const WPM = calcWordPerMin(element.textContent);
+			const codes = element.querySelectorAll('code');
+			const images = element.querySelectorAll('img');
+			const contentWords = element.textContent.split(/\s+/).length;
+			const maths = element.querySelectorAll('.mjx-chtml');
+			const mathsLength = Array.from(maths).map(e => e.textContent.replace(/[^a-zA-Z0-9]+/gi, ' ').split(/\s+/).filter(Boolean).length);
+			const detectMinutes = (contentWords / WPM) + (sum(mathsLength) / WPM / AVG_WORD_LEN) + (images.length * 0.5);
+			return Math.round(detectMinutes * 60);
+		}
+
+		function appendReadTime(container, min) {
+				const el = document.createElement('span');
+				el.className = 'info_post';
+				el.textContent = min < 1 ? '1분 내로 읽음' : `읽는데 ${min}분`;
+				const ed = document.createElement('span');
+				ed.className = 'txt_bar';
+				container.appendChild(ed);
+				container.appendChild(el);
+		}
+
+		const content = document.querySelector('#mArticle .contents_style');
+		const detectMinutes = Math.round(estimateReadingTime(content) / 60);
+		appendReadTime(document.querySelector('#mArticle .area_title'), detectMinutes);
 	})();
 	</script>
 </body>
