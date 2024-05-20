@@ -97,7 +97,13 @@ html, body{height:100%;min-height:100%}
 .wrap_skin{position:relative;min-width:884px;min-height:100%;padding-left:7.5em;transition:padding-left ease-in-out 0.2s}
 .wrap_skin.navi_on {padding-left:648px}
 .area_head{position:fixed;left:0;top:0;width:7.5em;margin-top:75px;min-width:7.5em;z-index:1000}
-.article_skin{width:960px;min-height:858px;margin:0 auto;padding:57px 42px 100px 192px;}
+.article_skin{
+	width: 720px;
+	min-height: 858px;
+	margin: 0 auto;
+	padding: 60px 0;
+	box-sizing: border-box;
+}
 #tt-body-index .article_skin { padding-top:70px }
 .article_skin .tit_skin{padding-bottom:15px;border-bottom:1px solid #efefef;font-weight:normal;font-size:20px;line-height:26px;color:#5c5c5c}
 .article_skin .index_title { display:none }
@@ -246,14 +252,14 @@ figure[data-ke-type="video"] figcaption {
 .area_title .info_post a {font-size:13px;color:#a7a7a7}
 .area_title .info_post .txt_bar { margin:0 9px 0 5px }
 .area_view {
-	color:#5c5c5c;
+	color: #5c5c5c;
 	word-wrap: break-word;
 	display: grid;
-	margin-left: -220px;
-	grid-template-columns: 220px 1fr;
+	margin-left: -240px;
+	grid-template-columns: 240px 720px;
 	align-items: start;
 }
-.area_view p {font-size:16px;line-height:28px; margin:12px auto}
+.area_view p {font-size:16px;line-height:2.0; margin:12px auto}
 .area_view a {color:#6bacce}
 .area_view h1,
 .area_view h2,
@@ -380,14 +386,14 @@ figure[data-ke-type="video"] figcaption {
 .list_share .link_tw{background-position:-80px -30px}
 
 /* 관련기사 */
-.area_related {position:relative;width:820px;margin-top:54px;margin-left:auto;margin-right:auto;}
+.area_related {position:relative;width:100%;margin-top:54px;margin-left:auto;margin-right:auto;}
 .area_related .tit_related {font-weight:normal;font-size:20px;color:#222}
-.list_related {overflow:hidden;margin-top:15px}
-.list_related li {position:relative;float:left;margin-right:20px}
+.list_related {overflow:hidden;margin-top:15px;display: grid;grid-template-columns: repeat(4, 1fr);column-gap: 10px;width: 100%;height: 180px;}
+.list_related li {position:relative;}
 .list_related li:last-child { margin-right:0}
-.list_related .link_related {display:block;overflow:hidden;position:relative;width:185px;height:200px;margin:0 auto;border:1px solid #e8e8e8;background:#fafafa;font-size:13px;-webkit-box-sizing:border-box;box-sizing:border-box;text-align:center;color:#fff;transition: opacity 200ms ease-out;}
+.list_related .link_related {display:block;overflow:hidden;position:relative;width:100%;height:100%;margin:0 auto;border:1px solid #e8e8e8;background:#fafafa;font-size:13px;-webkit-box-sizing:border-box;box-sizing:border-box;text-align:center;color:#fff;transition: opacity 200ms ease-out;}
 .list_related .link_related:hover {opacity: 0.75; text-decoration: none;}
-.list_related .thumb_type .link_related {width:185px;height:200px;border:0 none}
+.list_related .thumb_type .link_related {border:0 none;}
 .list_related .frame_related {display:none;position:absolute;left:0;top:0;width:100%;height:100%;background:#000;opacity:.4;filter:alpha(Opacity=40)}
 .thumb_type .frame_related {display:block}
 .list_related .thumb_related {position:absolute;left:0;top:0;width:100%;height:100%}
@@ -784,10 +790,8 @@ only screen and (min-width:738px) and (max-width:1262px){
 	.list_share .link_ks {background-position:-40px -120px}
 	.list_share .link_tw {background-position:-80px -120px}
 	.area_related {width:100%;margin-top:54px}
-	.list_related {margin:15px -10px 0}
-	.list_related li {width:25%;margin-right:0;padding:0 10px;webikit-box-sizing:border-box;box-sizing:border-box}
-	.list_related .link_related {width:100%;max-width:183px}
-	.list_related .thumb_type .link_related {width:100%;max-width:185px}
+	.list_related {margin:15px -10px 0;height: 200px;}
+	.list_related li {width:100%;webikit-box-sizing:border-box;box-sizing:border-box}
 	.area_related .link_more {top:12px;right:0}
 	.area_reply .tit_nickname {font-size:16px}
 	.area_reply .txt_date {margin-top:4px}
